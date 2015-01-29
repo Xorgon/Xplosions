@@ -1,4 +1,4 @@
 name: Xplosions
-version: 1.0.0
+version: 1.1.0
 main: ${main.class}
 softdepend: [WorldEdit]

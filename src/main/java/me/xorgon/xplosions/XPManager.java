@@ -22,6 +22,14 @@ public class XPManager {
     public XPManager(XplosionsPlugin plugin) {
         this.plugin = plugin;
         file = new File(plugin.getDataFolder(), "config.yml");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                saveNew();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
         config = new YAMLProcessor(file, false, YAMLFormat.EXTENDED);
     }
 
@@ -49,24 +57,25 @@ public class XPManager {
         }
 
 
-        explosionFactor = (Double) config.getProperty("explosionFactor");
-        if (explosionFactor == null || explosionFactor == 0.0) {
+        explosionFactor = config.getDouble("explosionFactor");
+        if (explosionFactor == null) {
             explosionFactor = 1.0;
         }
 
-        destructionRatio = (Double) config.getProperty("destructionRatio");
-        if (destructionRatio == null || destructionRatio == 0.0) {
+        destructionRatio = config.getDouble("destructionRatio");
+        if (destructionRatio == null) {
             destructionRatio = 0.5;
         }
 
     }
 
-    public void save() {
-        config.setHeader("Configuration for Xplosions.");
-        config.setProperty("explosionFactor", explosionFactor);
+    public void saveNew() {
+        config = new YAMLProcessor(file, false, YAMLFormat.EXTENDED);
+        config.setHeader("#Configuration for Xplosions.");
+        config.setProperty("explosionFactor", 1.0);
         config.setComment("explosionFactor", "The explosion factor is a factor describing the power of the explosion (default = 1.0).");
-        config.setProperty("destructionRatio", destructionRatio);
-        config.setComment("explosionFactor", "The destruction ratio is the ratio governing what proportion of the exploded blocks are destroyed upon landing.");
+        config.setProperty("destructionRatio", 0.5);
+        config.setComment("destructionRatio", "The destruction ratio is the ratio governing what proportion of the exploded blocks are destroyed upon landing (default = 0.5).");
         config.save();
     }
 

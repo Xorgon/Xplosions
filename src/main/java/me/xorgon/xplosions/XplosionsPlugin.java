@@ -21,7 +21,6 @@ public class XplosionsPlugin extends JavaPlugin{
 
     @Override
     public void onDisable(){
-        manager.save();
     }
 
     public static XplosionsPlugin getPlugin() {

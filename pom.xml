@@ -7,7 +7,7 @@
     <name>Xplosions</name>
     <groupId>me.xorgon</groupId>
     <artifactId>Xplosions</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 
     <properties>
         <package>me.xorgon.xplosions</package>

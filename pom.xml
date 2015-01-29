@@ -10,10 +10,9 @@
     <version>1.0.0</version>
 
     <properties>
-        <package>me.xorgon.Xplosions</package>
-        <main.class>${package}.XplosionPlugin</main.class>
+        <package>me.xorgon.xplosions</package>
+        <main.class>${package}.XplosionsPlugin</main.class>
         <bukkit.version>1.7.9-R0.1-SNAPSHOT</bukkit.version>
-        <command-framework-bukkit.version>0.5-SNAPSHOT</command-framework-bukkit.version>
     </properties>
 
     <dependencies>
@@ -21,6 +20,19 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>${bukkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sk89q</groupId>
+            <artifactId>worldedit</artifactId>
+            <version>6.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
+            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
@@ -32,6 +44,10 @@
         <repository>
             <id>overcast-deployment</id>
             <url>https://repo.oc.tc/content/repositories/public</url>
+        </repository>
+        <repository>
+            <id>sk89q-repo</id>
+            <url>http://maven.sk89q.com/repo/</url>
         </repository>
     </repositories>
 

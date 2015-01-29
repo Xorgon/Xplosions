@@ -9,15 +9,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class XplosionsPlugin extends JavaPlugin{
 
     private static XplosionsPlugin instance;
+    private XPManager manager;
 
     @Override
     public void onEnable(){
         instance = this;
-        Bukkit.getPluginManager().registerEvents(new XPListeners(this), this);
+        manager = new XPManager(this);
+        manager.load();
+        Bukkit.getPluginManager().registerEvents(new XPListeners(this, manager), this);
     }
 
     @Override
     public void onDisable(){
+        manager.save();
+    }
 
+    public static XplosionsPlugin getPlugin() {
+        return instance;
     }
 }

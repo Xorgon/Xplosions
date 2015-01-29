@@ -43,7 +43,7 @@ public class XPListeners implements Listener{
             Double y = bLoc.getY()/bLocMag;
             Double z = bLoc.getZ()/bLocMag;
 
-            Vector velocity = new Vector(x,y,z).multiply(1/bLocMag);
+            Vector velocity = new Vector(x,y,z).multiply(1/Math.pow(bLocMag,2));
 
             fBlock.setVelocity(velocity);
         }
